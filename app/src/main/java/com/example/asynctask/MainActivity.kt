@@ -11,25 +11,9 @@ import android.widget.Button
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
-    private lateinit var button2: Button
-    private val textDone = "done"
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        button2 = findViewById(R.id.button2)
-    }
-
-    fun doSomethingLong() {
-        try {
-            println("long operation start")
-            Thread.sleep(1000)
-            button2.text = textDone
-            println("long operation stop")
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
     }
 
     fun buttonClick(view: View) {
@@ -39,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     class MyTask : AsyncTask<Int, Void, String>() {
-        private val mainActivity = MainActivity()
-
         override fun onPreExecute() {
             println("onPreExecute ${Thread.currentThread().name} ${Thread.currentThread().id}")
         }
